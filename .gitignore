@@ -1,0 +1,20 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/StraightVanilla/StraightVanilla/StraightVanilla/obj
+/StraightVanilla/StraightVanilla/StraightVanilla.Android/obj
+/StraightVanilla/StraightVanilla/StraightVanilla.iOS/obj
+/StraightVanilla/StraightVanilla/StraightVanilla/bin/Debug/netstandard2.0
+/StraightVanilla/StraightVanilla/StraightVanilla.Android/bin/Debug
+/StraightVanilla/.vs/StraightVanilla/DesignTimeBuild/.dtbcache.v2
+/StraightVanilla/StraightVanilla/StraightVanilla/StraightVanilla.csproj.user
+/XEADemo/.vs/XEADemo/DesignTimeBuild/.dtbcache.v2
+/XEADemo/.vs/XEADemo/v16/.suo
+/XEADemo/XEADemo/XEADemo/obj
+/XEADemo/XEADemo/XEADemo/XEADemo.csproj.user
+/XEADemo/XEADemo/XEADemo.Android/obj
+/XEADemo/XEADemo/XEADemo.Android/Resources/Resource.designer.cs
+/XEADemo/XEADemo/XEADemo.Android/XEADemo.Android.csproj.user
+/XEADemo/XEADemo/XEADemo.iOS/obj
+/XEADemo/XEADemo/XEADemo.iOS/XEADemo.iOS.csproj.user
