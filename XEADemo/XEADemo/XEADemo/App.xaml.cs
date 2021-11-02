@@ -1,5 +1,6 @@
 ﻿using XEADemo.Views;
 using Xamarin.Forms;
+using XEADemo.DependencyInjection;
 
 namespace XEADemo
 {
@@ -8,6 +9,8 @@ namespace XEADemo
         public App()
         {
             InitializeComponent();
+
+            DIContainer.Initialize();
 
             MainPage = new NavigationPage(new MainPage());
         }

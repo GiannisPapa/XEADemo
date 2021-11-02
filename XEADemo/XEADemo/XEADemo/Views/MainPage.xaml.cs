@@ -1,6 +1,8 @@
 ﻿using XEADemo.Models;
 using System;
 using Xamarin.Forms;
+using XEADemo.DependencyInjection;
+using System.Threading.Tasks;
 
 namespace XEADemo.Views
 {
@@ -21,6 +23,12 @@ namespace XEADemo.Views
 
             // deselect Item
             ((ListView)sender).SelectedItem = null;
+        }
+
+        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            var message = DIContainer.DialogService?.Message();
+            DisplayAlert("Message", message, "Cancel");
         }
     }
 }

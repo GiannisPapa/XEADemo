@@ -43,6 +43,10 @@
                             <Label Text="{Binding Description}"
                                    FontAttributes="Italic" TextColor="DarkGray"
                                    Grid.Column="1" Grid.Row="1" />
+
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Grid.GestureRecognizers>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
