@@ -1,13 +1,13 @@
-﻿using XEADemo.ViewModels;
-using System;
+﻿using System;
 using System.Windows.Input;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace XEADemo.Models
+namespace XEADemo
 {
     public class PermissionItem : ObservableObject
     {
+
         public PermissionItem(string title, Permissions.BasePermission permission)
         {
             Title = title;

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +10,44 @@ namespace XEADemo.Views
         public ConnectivityPage()
         {
             InitializeComponent();
+            InitValues();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            Connectivity.ConnectivityChanged += OnConnectivityChanged;
+        }
+
+        protected override void OnDisappearing()
+        {
+            Connectivity.ConnectivityChanged -= OnConnectivityChanged;
+
+            base.OnDisappearing();
+        }
+
+        void OnConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            this.NetworkAccess.Text = $"NetworkAccess: { Connectivity.NetworkAccess }";
+            this.ConnectionProfiles.Text = $"NetworkAccess: { GetConnectionProfiles }";
+        }
+
+        void InitValues()
+        {
+            this.NetworkAccess.Text = $"NetworkAccess: { Connectivity.NetworkAccess }";
+            this.ConnectionProfiles.Text = $"NetworkAccess: { GetConnectionProfiles }";
+        }
+
+        public string GetConnectionProfiles
+        {
+            get
+            {
+                var profiles = string.Empty;
+                foreach (var p in Connectivity.ConnectionProfiles)
+                    profiles += "\n" + p.ToString();
+                return profiles;
+            }
         }
     }
 }

@@ -1,22 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-       x:Class="XEADemo.Views.MainPage"
-       xmlns:viewmodels="clr-namespace:XEADemo.ViewModels">
-
-    <ContentPage.BindingContext>
-        <viewmodels:MainPageViewModel/>
-    </ContentPage.BindingContext>
+       x:Class="XEADemo.Views.MainPage">
 
     <StackLayout>
 
-        <ListView ItemsSource="{Binding FilteredItems}"
+        <ListView x:Name="MyList"
                   HasUnevenRows="{OnPlatform Default=True, macOS=False}"
                   ItemTapped="OnSampleTapped"
                   VerticalOptions="FillAndExpand">
 
             <ListView.Header>
-                <SearchBar Placeholder="Filter samples..." Text="{Binding FilterText}" />
+                <SearchBar Placeholder="Filter samples..." PropertyChanged="SearchBar_PropertyChanged"/>
             </ListView.Header>
 
             <ListView.ItemTemplate>

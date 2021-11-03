@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace XEADemo.ViewModels
+namespace XEADemo
 {
     public class ObservableObject : INotifyPropertyChanged
     {

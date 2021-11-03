@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace XEADemo.Models
+namespace XEADemo
 {
     public class SampleItem
     {
