@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
+using XEADemo.MessagingCenter;
 
 namespace XEADemo.ViewModels
 {
@@ -35,6 +37,17 @@ namespace XEADemo.ViewModels
         public Task NavigateAsync(BaseViewModel vm, bool showModal = false)
         {
             return DoNavigate?.Invoke(vm, showModal) ?? Task.CompletedTask;
+        }
+
+        public void SetConnectivityListener()
+        {
+            Connectivity.ConnectivityChanged -= OnConnectivityChanged;
+            Connectivity.ConnectivityChanged += OnConnectivityChanged;
+        }
+
+        void OnConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            Xamarin.Forms.MessagingCenter.Send(new Message { Title = "NetworkState", Value = e.NetworkAccess.ToString() }, "CurrentNetworkState");
         }
     }
 }

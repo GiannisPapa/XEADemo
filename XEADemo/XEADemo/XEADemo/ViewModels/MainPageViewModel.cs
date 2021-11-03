@@ -2,6 +2,7 @@
 using XEADemo.Views;
 using System.Collections.Generic;
 using System.Linq;
+using XEADemo.MessagingCenter;
 
 namespace XEADemo.ViewModels
 {
@@ -60,6 +61,9 @@ namespace XEADemo.ViewModels
             };
             filteredItems = samples;
             filterText = string.Empty;
+
+            SetConnectivityListener();
+            MessagingCenterSubscriber();
         }
 
         public IEnumerable<SampleItem> FilteredItems
@@ -93,6 +97,14 @@ namespace XEADemo.ViewModels
             }
 
             return samples.OrderBy(s => s.Name);
+        }
+
+        public async void MessagingCenterSubscriber()
+        {
+            Xamarin.Forms.MessagingCenter.Subscribe<Message>(this, "CurrentNetworkState", async message =>
+            {
+                await Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Network State", message.Value, "OK");
+            });
         }
     }
 }

@@ -18,7 +18,7 @@ namespace XEADemo.Views
         {
             base.OnAppearing();
 
-            MessagingCenter.Subscribe<PermissionItem, Exception>(this, nameof(PermissionException), async (p, ex) =>
+            Xamarin.Forms.MessagingCenter.Subscribe<PermissionItem, Exception>(this, nameof(PermissionException), async (p, ex) =>
                 await DisplayAlert("Permission Error", ex.Message, "OK"));
         }
 
@@ -26,7 +26,7 @@ namespace XEADemo.Views
         {
             base.OnDisappearing();
 
-            MessagingCenter.Unsubscribe<PermissionItem, Exception>(this, nameof(PermissionException));
+            Xamarin.Forms.MessagingCenter.Unsubscribe<PermissionItem, Exception>(this, nameof(PermissionException));
         }
     }
 }

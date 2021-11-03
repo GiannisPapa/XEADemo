@@ -33,7 +33,7 @@ namespace XEADemo.Models
                 }
                 catch (Exception ex)
                 {
-                    MessagingCenter.Send<PermissionItem, Exception>(this, nameof(PermissionException), ex);
+                    Xamarin.Forms.MessagingCenter.Send<PermissionItem, Exception>(this, nameof(PermissionException), ex);
                 }
             });
 
@@ -47,7 +47,7 @@ namespace XEADemo.Models
                 }
                 catch (Exception ex)
                 {
-                    MessagingCenter.Send<PermissionItem, Exception>(this, nameof(PermissionException), ex);
+                    Xamarin.Forms.MessagingCenter.Send<PermissionItem, Exception>(this, nameof(PermissionException), ex);
                 }
             });
 
@@ -61,7 +61,7 @@ namespace XEADemo.Models
                 }
                 catch (Exception ex)
                 {
-                    MessagingCenter.Send<PermissionItem, Exception>(this, nameof(PermissionException), ex);
+                    Xamarin.Forms.MessagingCenter.Send<PermissionItem, Exception>(this, nameof(PermissionException), ex);
                 }
             });
     }
