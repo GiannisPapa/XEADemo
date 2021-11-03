@@ -18,3 +18,6 @@
 /XEADemo/XEADemo/XEADemo.Android/XEADemo.Android.csproj.user
 /XEADemo/XEADemo/XEADemo.iOS/obj
 /XEADemo/XEADemo/XEADemo.iOS/XEADemo.iOS.csproj.user
+/XEADemo/XEADemo/XEADemo/bin/Debug/netstandard2.0
+/XEADemo/XEADemo/XEADemo.Android/bin/Debug
+/XEADemo/XEADemo/XEADemo.iOS/bin/iPhoneSimulator/Debug
