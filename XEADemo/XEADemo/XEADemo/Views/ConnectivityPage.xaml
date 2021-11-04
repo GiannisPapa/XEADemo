@@ -4,9 +4,9 @@
              xmlns:viewmodels="clr-namespace:XEADemo.ViewModels"
              x:Class="XEADemo.Views.ConnectivityPage">
     
-    <ContentPage.BindingContext>
+    <!--<ContentPage.BindingContext>
         <viewmodels:ConnectivityViewModel/>
-    </ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
 
     <StackLayout>
         <Label Text="Easily detect connectivity state." FontAttributes="Bold" Margin="12" />
@@ -16,6 +16,8 @@
                 <Label Text="Connectivity State:" FontAttributes="Bold" />
                 <Label Text="{Binding NetworkAccess, StringFormat='NetworkAccess: {0}'}" />
                 <Label Text="{Binding ConnectionProfiles, StringFormat='ConnectionProfiles: {0}'}" />
+                <Label Text="{Binding Message}" TextColor="Red"/>
+                <Button Text="GoBack" Command="{Binding GoBackCommand}"/>
             </StackLayout>
         </ScrollView>
     </StackLayout>

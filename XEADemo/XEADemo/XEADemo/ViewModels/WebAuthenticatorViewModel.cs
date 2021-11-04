@@ -56,7 +56,7 @@ namespace XEADemo.ViewModels
                 else
                 {
                     var authUrl = new Uri(authenticationUrl + scheme);
-                    var callbackUrl = new Uri("xamarinessentials://");
+                    var callbackUrl = new Uri("myapp://");
 
                     r = await WebAuthenticator.AuthenticateAsync(authUrl, callbackUrl);
                 }
@@ -73,14 +73,20 @@ namespace XEADemo.ViewModels
                 Console.WriteLine("Login canceled.");
 
                 AuthToken = string.Empty;
-                await DisplayAlertAsync("Login canceled.");
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await DisplayAlertAsync("Login canceled.");
+                });
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Failed: {ex.Message}");
 
                 AuthToken = string.Empty;
-                await DisplayAlertAsync($"Failed: {ex.Message}");
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await DisplayAlertAsync($"Failed: {ex.Message}");
+                });
             }
         }
     }

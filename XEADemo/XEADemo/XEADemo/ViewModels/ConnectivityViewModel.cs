@@ -1,12 +1,28 @@
-﻿using Xamarin.Essentials;
+﻿using System.Windows.Input;
+using Xamarin.Essentials;
+using Xamarin.Forms;
+using XEADemo.Services;
 
 namespace XEADemo.ViewModels
 {
     public class ConnectivityViewModel : BaseViewModel
     {
-        public ConnectivityViewModel()
+        INavigationService _navigationService;
+
+        public ConnectivityViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
+            Connectivity.ConnectivityChanged -= OnConnectivityChanged;
+            Connectivity.ConnectivityChanged += OnConnectivityChanged;
+
+            GoBackCommand = new Command(() =>
+            {
+                _navigationService.GoBack();
+            });
         }
+
+        public ICommand GoBackCommand { get; private set; }
+        
 
         public string NetworkAccess =>
             Connectivity.NetworkAccess.ToString();
@@ -22,18 +38,24 @@ namespace XEADemo.ViewModels
             }
         }
 
-        public override void OnAppearing()
+        public override void OnNavigated(object parameters)
         {
-            base.OnAppearing();
+            base.OnNavigated(parameters);
 
-            Connectivity.ConnectivityChanged += OnConnectivityChanged;
+            if (parameters is string message)
+                Message = message;
         }
 
-        public override void OnDisappearing()
-        {
-            Connectivity.ConnectivityChanged -= OnConnectivityChanged;
+        private string _message;
 
-            base.OnDisappearing();
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                OnPropertyChanged(nameof(Message));
+            }
         }
 
         void OnConnectivityChanged(object sender, ConnectivityChangedEventArgs e)

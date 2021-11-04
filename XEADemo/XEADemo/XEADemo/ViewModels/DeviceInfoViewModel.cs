@@ -4,6 +4,13 @@ namespace XEADemo.ViewModels
 {
     public class DeviceInfoViewModel : BaseViewModel
     {
+        public DeviceInfoViewModel()
+        {
+            ScreenMetrics = DeviceDisplay.MainDisplayInfo;
+            DeviceDisplay.MainDisplayInfoChanged -= OnScreenMetricsChanged;
+            DeviceDisplay.MainDisplayInfoChanged += OnScreenMetricsChanged;
+        }
+
         DisplayInfo screenMetrics;
 
         public string Model => DeviceInfo.Model;
@@ -26,21 +33,6 @@ namespace XEADemo.ViewModels
         {
             get => screenMetrics;
             set => SetProperty(ref screenMetrics, value);
-        }
-
-        public override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            DeviceDisplay.MainDisplayInfoChanged += OnScreenMetricsChanged;
-            ScreenMetrics = DeviceDisplay.MainDisplayInfo;
-        }
-
-        public override void OnDisappearing()
-        {
-            DeviceDisplay.MainDisplayInfoChanged -= OnScreenMetricsChanged;
-
-            base.OnDisappearing();
         }
 
         void OnScreenMetricsChanged(object sender, DisplayInfoChangedEventArgs e)

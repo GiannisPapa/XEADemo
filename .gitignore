@@ -20,3 +20,7 @@
 /XEADemo/XEADemo/XEADemo.iOS/XEADemo.iOS.csproj.user
 /XEADemo/XEADemo/XEADemo/bin/Debug/netstandard2.0
 /XEADemo/XEADemo/XEADemo.Android/bin/Debug
+<<<<<<< HEAD
+=======
+/XEADemo/XEADemo/XEADemo.iOS/bin/iPhoneSimulator/Debug
+>>>>>>> edb070e976d8f2b7aa180dd8962f8d6a2716f21b

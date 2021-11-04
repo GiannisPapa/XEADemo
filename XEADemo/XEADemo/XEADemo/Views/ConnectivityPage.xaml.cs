@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using XEADemo.DependencyInjection;
+using XEADemo.ViewModels;
 
 namespace XEADemo.Views
 {
@@ -15,6 +17,8 @@ namespace XEADemo.Views
         public ConnectivityPage()
         {
             InitializeComponent();
+
+            BindingContext = new ConnectivityViewModel(DIContainer.NavigationService);
         }
     }
 }

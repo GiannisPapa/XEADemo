@@ -2,19 +2,26 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        x:Class="XEADemo.Views.MainPage"
-       xmlns:viewmodels="clr-namespace:XEADemo.ViewModels">
+       xmlns:behavior="clr-namespace:XEADemo.Behaviors"
+       xmlns:converter="clr-namespace:XEADemo.Converters">
 
-    <ContentPage.BindingContext>
-        <viewmodels:MainPageViewModel/>
-    </ContentPage.BindingContext>
-
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:ItemTappedEventArgsToItemTappedConverter x:Key="ItemTappedConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
     <StackLayout>
 
         <ListView ItemsSource="{Binding FilteredItems}"
                   HasUnevenRows="{OnPlatform Default=True, macOS=False}"
-                  ItemTapped="OnSampleTapped"
+                  ItemSelected="ListView_ItemSelected"
                   VerticalOptions="FillAndExpand">
 
+            <ListView.Behaviors>
+                <behavior:EventToCommandBehavior EventName="ItemTapped" Command="{Binding NavigateCommand}" Converter="{StaticResource ItemTappedConverter}" />
+            </ListView.Behaviors>
+            
             <ListView.Header>
                 <SearchBar Placeholder="Filter samples..." Text="{Binding FilterText}" />
             </ListView.Header>
@@ -43,10 +50,6 @@
                             <Label Text="{Binding Description}"
                                    FontAttributes="Italic" TextColor="DarkGray"
                                    Grid.Column="1" Grid.Row="1" />
-
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                            </Grid.GestureRecognizers>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

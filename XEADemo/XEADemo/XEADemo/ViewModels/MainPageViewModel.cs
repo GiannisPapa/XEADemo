@@ -2,17 +2,24 @@
 using XEADemo.Views;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Input;
+using Xamarin.Forms;
+using System;
+using XEADemo.Services;
 
 namespace XEADemo.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
+        INavigationService _navigationService;
         SampleItem[] samples;
         IEnumerable<SampleItem> filteredItems;
         string filterText;
 
-        public MainPageViewModel()
+        public MainPageViewModel(INavigationService navigationService)
         {
+            NavigateCommand = new Command<SampleItem>(OnNavigate);
+            _navigationService = navigationService;
             samples = new SampleItem[]
             {
                 new SampleItem(
@@ -62,6 +69,8 @@ namespace XEADemo.ViewModels
             filterText = string.Empty;
         }
 
+        public ICommand NavigateCommand { get; private set; }
+
         public IEnumerable<SampleItem> FilteredItems
         {
             get => filteredItems;
@@ -93,6 +102,41 @@ namespace XEADemo.ViewModels
             }
 
             return samples.OrderBy(s => s.Name);
+        }
+
+        async void OnNavigate(SampleItem item)
+        {
+            if (item == null)
+                return;
+
+            if (item.PageType == typeof(AppInfoPage))
+            {
+                _navigationService.Navigate(NavigationKeys.AppInfoPage);
+            }
+            else if (item.PageType == typeof(ClipboardPage))
+            {
+                _navigationService.Navigate(NavigationKeys.ClipboardPage);
+            }
+            else if (item.PageType == typeof(ConnectivityPage))
+            {
+                _navigationService.Navigate(NavigationKeys.ConnectivityPage, "Message from the main page");
+            }
+            else if (item.PageType == typeof(DeviceInfoPage))
+            {
+                _navigationService.Navigate(NavigationKeys.DeviceInfoPage);
+            }
+            else if (item.PageType == typeof(FilePickerPage))
+            {
+                _navigationService.Navigate(NavigationKeys.FilePickerPage);
+            }
+            else if (item.PageType == typeof(PermissionsPage))
+            {
+                _navigationService.Navigate(NavigationKeys.PermissionsPage);
+            }
+            else if (item.PageType == typeof(WebAuthenticatorPage))
+            {
+                _navigationService.Navigate(NavigationKeys.WebAuthenticatorPage);
+            }
         }
     }
 }

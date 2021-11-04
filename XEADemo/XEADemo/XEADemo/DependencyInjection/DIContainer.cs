@@ -16,12 +16,21 @@ namespace XEADemo.DependencyInjection
             }
         }
 
+        public static INavigationService NavigationService
+        {
+            get
+            {
+                return Container?.Resolve<INavigationService>();
+            }
+        }
+
         public static void Initialize()
         {
             if (_builder == null)
             {
                 _builder = new ContainerBuilder();
                 _builder.RegisterType<DialogService>().As<IDialogService>().SingleInstance();
+                _builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
                 Container = _builder.Build();
             }
         }

@@ -23,6 +23,10 @@ namespace XEADemo.ViewModels
         {
         }
 
+        public virtual void OnNavigated(object parameters)
+        {
+        }
+
         internal event Func<string, Task> DoDisplayAlert;
 
         internal event Func<BaseViewModel, bool, Task> DoNavigate;
