@@ -6,6 +6,8 @@ namespace XEADemo.ViewModels
     {
         public ConnectivityViewModel()
         {
+            Connectivity.ConnectivityChanged -= OnConnectivityChanged;
+            Connectivity.ConnectivityChanged += OnConnectivityChanged;
         }
 
         public string NetworkAccess =>
@@ -20,20 +22,6 @@ namespace XEADemo.ViewModels
                     profiles += "\n" + p.ToString();
                 return profiles;
             }
-        }
-
-        public override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            Connectivity.ConnectivityChanged += OnConnectivityChanged;
-        }
-
-        public override void OnDisappearing()
-        {
-            Connectivity.ConnectivityChanged -= OnConnectivityChanged;
-
-            base.OnDisappearing();
         }
 
         void OnConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
