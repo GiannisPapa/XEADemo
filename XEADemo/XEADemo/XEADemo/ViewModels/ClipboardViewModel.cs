@@ -78,7 +78,7 @@ namespace XEADemo.ViewModels
 
         async void OnCheck()
         {
-            await DisplayAlertAsync($"Has text: {Clipboard.HasText}");
+            await App.Current.MainPage.DisplayAlert("Title", $"Has text: {Clipboard.HasText}", "OK");
         }
     }
 }

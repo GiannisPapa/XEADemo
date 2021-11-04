@@ -75,7 +75,7 @@ namespace XEADemo.ViewModels
                 AuthToken = string.Empty;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await DisplayAlertAsync("Login canceled.");
+                    await App.Current.MainPage.DisplayAlert("Title", "Login canceled.", "OK");
                 });
             }
             catch (Exception ex)
@@ -85,7 +85,7 @@ namespace XEADemo.ViewModels
                 AuthToken = string.Empty;
                 Device.BeginInvokeOnMainThread(async () =>
                 {
-                    await DisplayAlertAsync($"Failed: {ex.Message}");
+                    await App.Current.MainPage.DisplayAlert("Title", $"Failed: {ex.Message}", "OK");
                 });
             }
         }
